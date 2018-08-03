@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Proveedor.CuenasAPagar.CargaComprobantes.ItemNumero"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion">
+    <StackPanel Orientation="Horizontal" Margin="10">
+
+        <controles:ItemFormulario
+            Width="250" FiltroEntrada="NumericoEntero" TamañoMaximo="4"
+            Etiqueta="Numero"
+            Valor="{Binding Path=Modelo.Prenumero, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        />
+        <controles:ItemFormulario x:Name="PosNumero"
+            Width="250" FiltroEntrada="NumericoEntero"
+            Valor="{Binding Path=Modelo.Numero, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            />
+    </StackPanel>
+</UserControl>

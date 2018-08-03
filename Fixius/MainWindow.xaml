@@ -1,0 +1,95 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="clr-namespace:Inteldev.Core.DTO.Menu;assembly=Inteldev.Core.DTO"
+    xmlns:s="clr-namespace:Inteldev.Core.Presentacion.Controladores;assembly=Inteldev.Core.Presentacion"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"    
+    xmlns:local="clr-namespace:Inteldev.Fixius"
+    xmlns:dtos="clr-namespace:Inteldev.Fixius.Servicios.DTO.Articulos;assembly=Inteldev.Fixius.Servicios.DTO"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"                
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+    x:Class="Fixius.MainWindow"        
+    xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+    Title="Fixius" x:Name="miVentana" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="SingleBorderWindow" mc:Ignorable="d" Height="401" Width="740" >
+
+    <Window.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type i:OpcionMenu}"
+                                  ItemsSource="{Binding Opciones}" />
+
+        <local:HeloCommand x:Key="hola"/>
+    </Window.Resources>
+    <Grid x:Name="Grid1">
+        <Grid.Background>
+            <ImageBrush ImageSource="Hergo_logo+tagline_fondo_azul_CMYK.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="313*" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <Menu Height="23" x:Name="MenuPrincipal"  VerticalAlignment="Top" ItemsSource="{Binding MenuPrincipal}" >
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFD7CECE" Offset="0.2"/>
+                    <GradientStop Color="#FFD7CECE" Offset="0.8"/>
+                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Menu.Background>
+            <Menu.ItemContainerStyle>
+                <Style TargetType="{x:Type MenuItem}">
+                    <Setter Property="Header" Value="{Binding Nombre}"/>
+                    <Setter Property="Command" Value="{StaticResource ResourceKey=hola}"/>
+                    <Setter Property="CommandParameter" Value="{Binding Nombre}"/>
+                    <Setter Property="Icon" Value="{Binding Icono}"/>
+                </Style>
+            </Menu.ItemContainerStyle>
+        </Menu>
+
+
+        <StatusBar Grid.Row="2" x:Name="BarraDeEstado">
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="txtEmpresa"  Text="Empresa: " FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtEmpresaActual" Text="{Binding EmpresaActual.RazonSocial}" IsReadOnly="True" Width="90" >
+                        <TextBox.InputBindings>
+                            <MouseBinding Command="{Binding CmdCambiarEmpresa}" Gesture="LeftClick" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="txtSucursal" Text="Sucursal: " FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtSucursalActual" Text="{Binding SucursalActual.Nombre}" IsReadOnly="True" Width="90"  >
+                        <TextBox.InputBindings>
+                            <MouseBinding Command="{Binding CmdCambiarEmpresa}" Gesture="LeftClick"/>
+                        </TextBox.InputBindings>
+                    </TextBox>
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="txtUsuario" Text="Usuario: " FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtUsuarioActual" Text="{Binding UsuarioActual.Nombre}" IsReadOnly="True" Width="90" >
+                        <TextBox.InputBindings>
+                            <MouseBinding Command="{Binding CmdCambiarUsuario}" Gesture="LeftClick" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+                </StackPanel>
+            </StatusBarItem>
+
+        </StatusBar>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="170,127,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_6"/>
+        <!--<Button Content="Button" HorizontalAlignment="Left" Margin="183,126,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_4"/>-->
+        <!--<Button Content="Mostrar coordenadas por cliente" HorizontalAlignment="Left" Margin="254,158,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_2"/>
+        <Button Content="Crear Coordenadas para clientes" HorizontalAlignment="Left" Margin="254,185,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_3"/>-->
+
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Proveedores.Compras.OrdenDeCompra.VistaOrdenCompra"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:dto="clr-namespace:Inteldev.Fixius.Servicios.DTO.Proveedores;assembly=Inteldev.Fixius.Servicios.DTO"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:controles2="clr-namespace:Inteldev.Fixius;assembly=Fixius"
+              xmlns:l="clr-namespace:Inteldev.Fixius.Articulos"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+   
+   
+    <TabControl>
+        <TabItem Header="Básicos" >
+            <StackPanel Margin="10" ScrollViewer.CanContentScroll="True">
+                <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Habilitado="{Binding CodigoHabilitado}"/>
+                <controles:ItemFormulario
+                    Etiqueta="Nombre"
+                    Valor="{Binding Path=Modelo.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ></controles:ItemFormulario>
+                <controles:ItemFormularioMiniBusca Etiqueta="Deposito" 
+                    Presentador="{Binding PresentadorDeposito}" 
+                    Entidad="{Binding Path=Modelo.Deposito}"
+                    ></controles:ItemFormularioMiniBusca>
+                <controles:ItemFormularioMiniBusca Etiqueta="Condición de Pago"  
+                    Presentador="{Binding PresentadorCondicionDePago}"
+                    Entidad="{Binding Path=Modelo.CondicionDePago}"
+                    ></controles:ItemFormularioMiniBusca>
+                <controles:ItemFormularioFecha
+                    Etiqueta="Fecha Estimada"
+                    Fecha="{Binding Path=Modelo.FechaEntrega, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ></controles:ItemFormularioFecha>
+                <controles:ItemFormularioComboBoxEnums 
+                    Etiqueta="Estado"
+                    Tipo="{x:Type dto:EstadoOrdenDeCompra}"
+                    Seleccionado="{Binding Path=Modelo.Estado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                    ></controles:ItemFormularioComboBoxEnums>
+                <DataGrid Width="800" Height="341" 
+                	x:Name="datagridPrecios" HorizontalAlignment="Left" 
+                	MaxHeight="350"
+                	ItemsSource="{Binding Path=Modelo.Detalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                	AutoGenerateColumns="True" IsReadOnly="False"
+                	Margin="0,10"                           
+                          
+                	ScrollViewer.VerticalScrollBarVisibility="Auto"
+                	ScrollViewer.HorizontalScrollBarVisibility="Auto"     
+                          />
+                <Grid>
+                    <!--StackPanel agregado por Pocho-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Label Content="Total de Bultos" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding TotalBultos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Width="100" HorizontalContentAlignment="Left" />
+                        <Label Content="Importe Final" HorizontalAlignment="Right" Margin="10,0,10,0" VerticalContentAlignment="Center"/>
+                        <TextBox Text="{Binding ImporteTotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Width="100" HorizontalContentAlignment="Left"/>
+                    </StackPanel>
+                </Grid>
+                
+
+            </StackPanel>
+        </TabItem>
+        <!--<TabItem Header="Observaciones">
+            <StackPanel>
+                <controles:ItemFormularioObservacion 
+                    Etiqueta="Observaciones"
+                    Presentador="{Binding PresentadorObservaciones, UpdateSourceTrigger=PropertyChanged}"
+                    ></controles:ItemFormularioObservacion>
+            </StackPanel>
+        </TabItem>-->
+    </TabControl>
+
+</UserControl>

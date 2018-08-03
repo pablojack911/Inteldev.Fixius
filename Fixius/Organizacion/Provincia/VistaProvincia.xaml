@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Organizacion.Provincia.VistaProvincia"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             Loaded="UserControl_Loaded"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             Template="{StaticResource FondoAzulCopado}">
+    <StackPanel Margin="10">
+        <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Habilitado="False"/>
+        <controles:ItemFormulario x:Name="txtItemNombre" Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></controles:ItemFormulario>
+    </StackPanel>
+</UserControl>

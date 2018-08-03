@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Preventa.DescuentosPorLista.VistaItemDescuentoPorLista"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:f="clr-namespace:Inteldev.Fixius.Articulos"
+             mc:Ignorable="d"  >
+    <StackPanel Margin="10">
+        <f:BusquedaArticulo Presentador="{Binding PresentadorArea, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            AreaSeleccionada="{Binding Path=Modelo.Area, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            SectorSeleccionado="{Binding Path=Modelo.Sector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            SubSectorSeleccionado="{Binding Path=Modelo.Subsector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Familia="{Binding Path=Modelo.Familia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            SubFamilia="{Binding Path=Modelo.Subfamilia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ></f:BusquedaArticulo>
+        <!--<c:ItemFormularioComboBox Etiqueta="Marca" ItemsDetalle="{Binding Marcas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  Seleccionado="{Binding Path=Modelo.Marca, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        </c:ItemFormularioComboBox>-->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Left">
+            <Label Width="150" VerticalAlignment="Center">Marca</Label>
+            <ComboBox 
+                            ItemsSource="{Binding Path=Marcas}"
+                            SelectedItem="{Binding Path=Modelo.Marca, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"                            
+                            IsEditable="True"
+                            IsSynchronizedWithCurrentItem="True"
+                            Validation.ErrorTemplate="{StaticResource validationErrorTemplateAside}"  
+                            Width="380"
+                        />
+        </StackPanel>
+        <c:ItemFormularioMiniBuscaLista Etiqueta="Artículos" Presentador="{Binding PresentadorMiniBuscaArticulo}"></c:ItemFormularioMiniBuscaLista>
+        <c:ItemFormularioListaValores Etiqueta="Descuentos" Presentador="{Binding PresentadorDescuentos}"></c:ItemFormularioListaValores>
+    </StackPanel>
+</UserControl>

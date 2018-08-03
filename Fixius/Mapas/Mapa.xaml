@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Mapas.Mapa"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             mc:Ignorable="d" 
+             xmlns:map="clr-namespace:Inteldev.Fixius.Mapas"
+             d:DesignHeight="300" d:DesignWidth="300" Margin="10">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ToolBarPanel>
+            <ToolBar HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Zoom:</TextBlock>                    
+                    <Slider Name="mapzoom" Minimum="2" Maximum="20" Width="100" Margin="5,0,0,0" ></Slider>
+                    
+                </StackPanel>
+            </ToolBar>
+        </ToolBarPanel>
+        <map:Map x:Name="map" Zoom="{Binding ElementName=mapzoom, Path=Value,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              MinZoom="2" MaxZoom="20"
+                 Grid.Row="1" MouseDoubleClick="map_MouseDoubleClick"
+                 />
+        <StackPanel Grid.Row="2">
+            <controles:ItemFormulario 
+                Width="300"
+                Etiqueta="Latitud" 
+                Valor="{Binding Path=Coordenada.Latitud,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <controles:ItemFormulario 
+                Width="300"
+                Etiqueta="Longitud" 
+                Valor="{Binding Path=Coordenada.Longitud,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

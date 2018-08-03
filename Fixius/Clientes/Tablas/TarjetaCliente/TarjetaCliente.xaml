@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Clientes.Tablas.TarjetaCliente.TarjetaCliente"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion" 
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+             Loaded="UserControl_Loaded"
+             Focusable="True">
+    <Grid>
+        <StackPanel Margin="10">
+            <!--<controles:ItemFormularioMiniBusca
+                Etiqueta="Tipo De Tarjeta"
+                Presentador="{Binding presentadorMiniBusca, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                x:Name="presentadorMiniBusca"
+                Entidad="{Binding Path=Objeto.TipoTarjeta,Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"/>-->
+            <controles:ItemFormulario IsEnabled="False"
+                Etiqueta="Tarjeta"
+                Valor="{Binding Path=Objeto.TipoTarjeta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"
+                                      
+                ></controles:ItemFormulario>
+            
+            <controles:ItemFormulario
+                x:Name="itemCodigoTarjeta"
+                Etiqueta="Código"
+                Valor="{Binding Path=Objeto.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"
+                Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"                
+                >                
+            </controles:ItemFormulario>
+            <controles:ItemFormularioCheck
+                Etiqueta="Habilitada"
+                Seleccionado="{Binding Path=Objeto.Habilitada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                >
+
+            </controles:ItemFormularioCheck>
+        </StackPanel>
+    </Grid>
+</UserControl>

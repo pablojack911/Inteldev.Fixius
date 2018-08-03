@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Deposito.IngresoMercaderia.VistaNuevoIngreso"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500" Margin="5">
+    <StackPanel>
+        <c:ItemFormularioMiniBusca Etiqueta="Depósito" Presentador="{Binding PresentadorDeposito}">
+                                   
+        </c:ItemFormularioMiniBusca>
+        <c:ItemFormularioMiniBusca Etiqueta="Proveedor" Presentador="{Binding PresentadorProveedor}">
+                                   
+        </c:ItemFormularioMiniBusca>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="100*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Tipo de Ingreso"></TextBlock>
+            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,0,0,5" >
+                <RadioButton Margin="0,0,0,5" IsChecked="{Binding OrdenAbierta,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Orden de Compra Abierta</RadioButton>
+                <RadioButton IsChecked="{Binding OrdenGenerada,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             Command="{Binding CmdOpcion}"
+                             >Orden de Compra Generada</RadioButton>
+            </StackPanel>
+        </Grid>
+        <Grid>            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="100*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>            
+            <TextBlock Text="Ordenes de Compra"></TextBlock>
+            
+            
+            <DataGrid Height="300" Grid.Column="1" 
+                      ItemsSource="{Binding OrdenesDeCompra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      >
+                <DataGrid.Columns>                    
+                    <DataGridTextColumn Header="Orden Nº"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Fecha"></DataGridTextColumn>
+                    
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Grid>
+    </StackPanel>
+</UserControl>

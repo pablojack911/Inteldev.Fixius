@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Deposito.MovimientoStock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion" Height="310" Width="524">
+    <Grid>
+        <StackPanel>
+            <controles:ItemFormularioMiniBusca
+                Etiqueta="Concepto De Movimiento"
+                ></controles:ItemFormularioMiniBusca>
+            <controles:ItemFormularioMiniBusca
+                Etiqueta="De Depósito"
+                ></controles:ItemFormularioMiniBusca>
+            <controles:ItemFormularioMiniBusca
+                Etiqueta="A Depósito"
+                ></controles:ItemFormularioMiniBusca>
+            <DataGrid Height="215"></DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

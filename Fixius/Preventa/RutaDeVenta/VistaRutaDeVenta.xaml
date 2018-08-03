@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Preventa.RutaDeVenta.VistaRutaDeVenta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dto="clr-namespace:Inteldev.Fixius.Servicios.DTO.Clientes;assembly=Inteldev.Fixius.Servicios.DTO"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:color="clr-namespace:Inteldev.Fixius.Proveedores.Colores"
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+    <TabControl>
+        <!--INICIO TAB Basicos-->
+        <TabItem Header="Básicos">
+            <AdornerDecorator>
+                <StackPanel Margin="10">
+                    <controles:ItemFormulario
+                        Width="250" 
+                        x:Name="txtItemCodigo" 
+                        Etiqueta="Código" 
+                        Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                        Habilitado="{Binding CodigoHabilitado}"
+                        TamañoMaximo="4"/>
+                    <controles:ItemFormulario Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"/>
+                    <!--<controles:ItemFormularioMiniBusca Etiqueta="Empresa"
+                                                   Presentador="{Binding PresentadorEmpresa,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                                                   Entidad="{Binding Path=Modelo.Empresa,Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"
+                                                   />-->
+                    <!--<controles:ItemFormularioComboBox
+                        Etiqueta="Empresa"
+                        ItemsDetalle="{Binding Path=Empresas}" 
+                        Seleccionado="{Binding Path=Modelo.Empresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                    />-->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Left">
+                        <Label Width="150" VerticalAlignment="Center">Empresa</Label>
+                        <ComboBox 
+                            ItemsSource="{Binding Path=Empresas}"
+                            SelectedItem="{Binding Path=Modelo.Empresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"                            
+                            IsEditable="True"
+                            IsSynchronizedWithCurrentItem="True"
+                            Validation.ErrorTemplate="{StaticResource validationErrorTemplateAside}"  
+                            Width="380"
+                        />
+                    </StackPanel>
+                    <!--<controles:ItemFormularioMiniBusca Etiqueta="División Comercial"
+                                                   Presentador="{Binding PresentadorDivision,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                                                   Entidad="{Binding Path=Modelo.Division,Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"
+                                                   />-->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Left">
+                        <Label Width="150" VerticalAlignment="Center">División Comercial</Label>
+                        <ComboBox 
+                            ItemsSource="{Binding Path=Divisiones}"
+                            SelectedItem="{Binding Path=Division, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"                            
+                            IsEditable="True"
+                            IsSynchronizedWithCurrentItem="True"
+                            Validation.ErrorTemplate="{StaticResource validationErrorTemplateAside}"  
+                            Width="380"
+                        />
+                    </StackPanel>
+                    <controles:ItemFormularioMiniBusca Etiqueta="Región de venta"
+                                                   Presentador="{Binding PresentadorRegionDeVenta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                                                   Entidad="{Binding Path=Modelo.RegionDeVenta,Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"/>
+                    <controles:ItemFormularioCheck Etiqueta="Activada"
+                                               Seleccionado="{Binding Path=Modelo.Activada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </StackPanel>
+            </AdornerDecorator>
+        </TabItem>
+        <!--FIN TAB Basicos-->
+
+        <!--INICIO TAB Clientes-->
+        <TabItem Header="Clientes">
+            <AdornerDecorator>
+
+                <StackPanel Margin="10">
+                    <controles:ItemFormularioMiniBuscaLista  Height="Auto"
+                    Etiqueta="Clientes"
+                    Presentador="{Binding PresentadorClientes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+
+                    </controles:ItemFormularioMiniBuscaLista>
+                </StackPanel>
+            </AdornerDecorator>
+        </TabItem>
+        <!--FIN TAB Clientes-->
+
+        <!--INICIO TAB Cronograma-->
+        <TabItem Header="Cronograma">
+            <AdornerDecorator>
+                <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <controles:ItemFormularioDiasDeSemana Titulo="Días de Visita" Grid.Column="0" DiasDeSemana="{Binding Path=Modelo.DiasDeVisita}"/>
+                        <controles:ItemFormularioDiasDeSemana Titulo="Días de Entrega" Grid.Column="1" DiasDeSemana="{Binding Path=Modelo.DiasDeEntrega}"/>
+                        <controles:ItemFormularioDiasDeSemana Titulo="Diferidos" Grid.Column="2" DiasDeSemana="{Binding Path=Modelo.Diferidos}"/>
+                    </Grid>
+                    <controles:ItemFormularioCheck Etiqueta="No validar cronograma"
+                                               Seleccionado="{Binding Path=Modelo.NoValidarCronograma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <StackPanel Margin="0,5,0,0">
+                        <controles:ItemFormularioMiniBusca
+                        Etiqueta="Preventista Titular"
+                        Presentador="{Binding PresentadorTitular, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    ></controles:ItemFormularioMiniBusca>
+                        <controles:ItemFormularioMiniBusca
+                        Etiqueta="Preventista Suplente"
+                        Presentador="{Binding PresentadorSuplente, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    ></controles:ItemFormularioMiniBusca>
+                    </StackPanel>
+                </StackPanel>
+            </AdornerDecorator>
+        </TabItem>
+        <!--FIN TAB Cronograma-->
+
+        <!--INICIO TAB Datos Sistema Anterior-->
+        <TabItem Header="Datos Sistema Anterior">
+            <AdornerDecorator>
+                <StackPanel Margin="10">
+                    <controles:ItemFormularioComboBoxEnums 
+                    Etiqueta="Acepta Pedidos"
+                    Tipo="{x:Type dto:AceptaPedidos}"
+                    Seleccionado="{Binding Path=Modelo.DatosOld.AceptaPedidos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ></controles:ItemFormularioComboBoxEnums>
+                    <controles:ItemFormularioCheck Etiqueta="No Facturar" Seleccionado="{Binding Path=Modelo.DatosOld.NoFacturar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controles:ItemFormularioCheck>
+                    <controles:ItemFormularioCheck Etiqueta="Recargo por Logística" Seleccionado="{Binding Path=Modelo.DatosOld.RecargoPorLogistica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controles:ItemFormularioCheck>
+                </StackPanel>
+            </AdornerDecorator>
+        </TabItem>
+        <!--<TabItem
+            Header="Mapa">
+            <color:SeleccionaColor/>
+            
+        </TabItem>-->
+        <!--FIN TAB Datos Sistema Anterior-->
+    </TabControl>
+</UserControl>

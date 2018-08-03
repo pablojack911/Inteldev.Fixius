@@ -1,0 +1,187 @@
+﻿<Window x:Class="Inteldev.Fixius.Mapas.Geolocalizacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:m="clr-namespace:Inteldev.Fixius.Mapas"
+        Title="Geolocalizacion" WindowState="Maximized" Closing="Window_Closing">
+    <Window.Resources>
+        <m:EstadoConverter x:Key="estadoConvert"></m:EstadoConverter>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="100"  Width="25*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="75*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.ColumnSpan="3" FontSize="14">
+
+            <MenuItem Header="INFORMES">
+                <!--<MenuItem Header="CALCULAR BULTOS Y PESOS"
+                          Width="200"
+                          Name="btnCalcularBultosPesos"
+                          Click="btnCalcularBultosPesos_Click"/>-->
+                <MenuItem Header="Asistencias"
+                          Width="200">
+                    <MenuItem Name="mnuAsistenciasAlta" 
+                              Header="Alta Distribución SA"
+                              Click="mnuAsistenciasAlta_Click"
+                              Width="200"/>
+                    <MenuItem Name="mnuAsistenciasHiller"
+                              Header="Hiller SA"
+                              Click="mnuAsistenciasHiller_Click"
+                              Width="200"/>
+                </MenuItem>
+                <MenuItem Name="mnuInforme" 
+                          Header="Primeras visitas del día"
+                          Click="mnuInformePrimerasVisitas_Click"
+                          Width="200"/>
+                <MenuItem Name="mnuInformePosicionesActual" 
+                          Header="Últimas posiciones" 
+                          Click="mnuInformeUltimasPosiciones_Click"
+                          Width="200"/>
+            </MenuItem>
+            <MenuItem Header="VER">
+                <MenuItem Name="btnFiltrarPor" 
+                          Header="Filtrar por..."
+                          Width="200">
+                    <MenuItem Name="btnFiltrarPorCodigo"
+                              Header="Código"
+                              Click="btnFiltrarPorCodigo_Click"
+                              Width="100"/>
+                    <MenuItem Name="btnFiltrarPorNombre"
+                              Header="Nombre"
+                              Click="btnFiltrarPorNombre_Click"
+                              Width="100"/>
+                </MenuItem>
+                <MenuItem Name="btnchkVerAlta" 
+                          Header="Sólo Alta Distribución SA"
+                          Click="btnchkVerAlta_Click"
+                          Width="200"/>
+                <MenuItem Name="btnchkVerHiller" 
+                          Header="Sólo Hiller SA"
+                          Click="btnchkVerHiller_Click"
+                          Width="200"/>
+                <MenuItem Name="btnchkVerTODO" 
+                          Header="VER TODO" 
+                          Click="btnchkVerTODO_Click"
+                          Width="200"/>
+
+            </MenuItem>
+            <MenuItem Header="OTROS">
+                <MenuItem Name="mnuZonas"
+                          Header="Ver Todas las Zonas"
+                          Click="mnuZonas_Click"
+                          Width="200"/>
+                <MenuItem Name="mnuHistorial"
+                          Header="Historial" 
+                          Click="mnuHistorial_Click"
+                          Width="200"/>
+                <!--<MenuItem Name="mnuActualizarClientes" 
+                          Width="200"
+                          Header="Actualizar Clientes" 
+                          Click="mnuActualizarClientes_Click"/>-->
+            </MenuItem>
+        </Menu>
+
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"  Name="gridSplitter1" Width="5" Grid.Row="1" Grid.RowSpan="3" Focusable="False" />
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Button Name="btnActualizaPosicion" Click="btnActualizaPosicion_Click"  Height="30">Actualizar Posiciones</Button>
+            <Button Name="btnVerTodos" Click="btnVerTodos_Click" Height="30">Ver Todos</Button>
+            <Button Name="btnSilenciar" Click="btnSilenciar_Click" Height="30" Content="{Binding EtiquetaBotonSilenciar}"></Button>
+        </StackPanel>
+
+
+        <ListBox 
+            IsTextSearchEnabled="True" TextSearch.TextPath="{Binding FiltroDeLista}"
+            Grid.Row="2" Grid.Column="0"
+            Name="listaDeElementos" ScrollViewer.VerticalScrollBarVisibility="Visible"
+            ItemsSource="{Binding vendedores,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Visible}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <ImageBrush ImageSource="{Binding FondoDeCelda}" Opacity="0.1"/>
+                        </StackPanel.Background>
+                        <Image Stretch="UniformToFill" Width="50" Height="50" Source="{Binding Foto}"></Image>
+                        <StackPanel Width="100">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="26" FontWeight="Bold" Text="{Binding Codigo}"></TextBlock>
+                                <Image Source="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQKaPV-jBEQHlHGcwvJpaopNPB5RXokySiZH0u9Olhn0QxqTFShzg"
+                                   Visibility="{Binding Estado, Converter={StaticResource ResourceKey=estadoConvert}}"
+                                   Width="25"
+                                   Name="atencion" 
+                                   >
+                                    <Image.Triggers>
+                                        <EventTrigger RoutedEvent="Image.Loaded" >
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="atencion"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 From="1"
+                                                 To="0"
+                                                 Duration="0:0:1"
+                                                 AutoReverse="True"  RepeatBehavior="Forever"
+                                                                 
+                                                 />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                            </StackPanel>
+                            <TextBlock FontSize="16" Text="{Binding Nombre}"></TextBlock>
+                        </StackPanel>
+
+                        <Grid Margin="10,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0">Clientes Visitados:</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Visitados}"></TextBlock>
+                            <TextBlock Grid.Row="1">Clientes Compradores:</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Compradores}"></TextBlock>
+                            <TextBlock Grid.Row="2">Bultos Vendidos:</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Bultos}"></TextBlock>
+                            <TextBlock Grid.Row="3">Pesos Vendidos:</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Pesos}"></TextBlock>
+                            <TextBlock Grid.Row="4" Grid.RowSpan="2" Text="{Binding Fecha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <m:Map Grid.RowSpan="3" Grid.Column="2" x:Name="map"/>
+
+
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="3">
+            <StackPanel>
+                <TextBlock Text="{Binding Status ,UpdateSourceTrigger=PropertyChanged}" Width="250"></TextBlock>
+            </StackPanel>
+        </StatusBar>
+    </Grid>
+</Window>

@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Proveedores.Compras.OrdenDeCompra.VistaProveedorNuevoOrdenDeCompra"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:busqueda="clr-namespace:Inteldev.Fixius.Articulos"
+             Loaded="UserControl_Loaded">
+    <StackPanel Margin="10">
+        <TextBlock Text="Seleccione un Proveedor" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22"  TextWrapping="WrapWithOverflow" Padding="10"/>
+        <controles:ItemFormularioMiniBusca x:Name="mbProveedor"
+                                           Etiqueta="Proveedor" Margin="5"                                           
+                                           Presentador="{Binding PresentadorMiniBuscaProveedor}"  
+            />
+        <busqueda:BusquedaArticulo
+            Presentador="{Binding PresentadorBusquedaArticulo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            AreaSeleccionada="{Binding Path=EntidadActual.Area, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Margin="5,0,-27,0" Height="162"/>
+    </StackPanel>
+</UserControl>

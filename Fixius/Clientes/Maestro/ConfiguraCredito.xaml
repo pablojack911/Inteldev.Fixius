@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Clientes.Maestro.ConfiguraCredito"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             mc:Ignorable="d" 
+             Focusable="True">
+    <StackPanel>
+        <controles:ItemFormularioMiniBusca Etiqueta="Condición de"></controles:ItemFormularioMiniBusca>
+    </StackPanel>
+</UserControl>

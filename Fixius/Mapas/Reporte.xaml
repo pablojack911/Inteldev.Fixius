@@ -1,0 +1,29 @@
+﻿<Window x:Class="Inteldev.Fixius.Mapas.Reporte"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Reporte" WindowStartupLocation="Manual" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight" Topmost="True" ShowInTaskbar="True">
+  <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="400"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" FontSize="18">
+            <MenuItem Header="Imprimr" Name="btnPrint" Click="btnPrint_Click"/>
+            <!--<MenuItem Header="Exportar a Excel" Name="btnExcel" Click="btnExcel_Click"/>-->
+        </Menu>
+    <DataGrid 
+        CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" IsReadOnly="True"
+        FontSize="18"
+        Grid.Row="1"
+        ItemsSource="{Binding Posiciones}" 
+        AutoGenerateColumns="False" 
+        x:Name ="dgPosiciones" >
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Cliente" Binding="{Binding Path=Cliente}"></DataGridTextColumn>
+        <DataGridTextColumn Header="Hora Check In" Binding="{Binding Path=CheckIn, StringFormat=HH:mm}" ></DataGridTextColumn>
+        <DataGridTextColumn Header="Hora Check Out" Binding="{Binding Path=CheckOut, StringFormat=HH:mm}"></DataGridTextColumn>
+        <DataGridTextColumn Header="Tiempo" Binding="{Binding Path=Tiempo}"></DataGridTextColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</Window>

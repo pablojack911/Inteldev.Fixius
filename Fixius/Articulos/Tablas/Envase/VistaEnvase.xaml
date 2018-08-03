@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Articulos.Tablas.Envase.VistaEnvase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+    <StackPanel Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Habilitado="{Binding CodigoHabilitado}" Visibility="{Binding CodigoVisible}"/>
+        <controles:ItemFormulario 
+            Etiqueta="Nombre" 
+            Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"/>
+        <!--<controles:ItemFormulario
+            Etiqueta="Precio"
+            Width="250"
+            Valor="{Binding Path=Modelo.DatosOld.Precio, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"
+            FiltroEntrada="NumericoDecimal"    
+        />-->
+        <!--<controles:ItemFormularioMiniBusca
+            Etiqueta="Artículo"
+            Presentador="{Binding PresentadorArticulo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+            Entidad="{Binding Path=Modelo.DatosOld.Articulo,Mode=TwoWay,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+        />-->
+        <controles:ItemFormularioGrilla
+            Etiqueta="Articulos"
+            Presentador="{Binding PresentadorArticulosEnvase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        >
+            <controles:ItemFormularioGrilla.Columnas>
+                <DataGridTextColumn Header="Articulo" Binding="{Binding Articulo}"/>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
+            </controles:ItemFormularioGrilla.Columnas>
+        </controles:ItemFormularioGrilla>
+        <controles:ItemFormulario
+            Width="250" FiltroEntrada="NumericoDecimal"
+            Etiqueta="Precio"
+            Valor="{Binding Precio,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        />
+        <controles:ItemFormularioCheck
+            Etiqueta="Es Cerveza"
+            Seleccionado="{Binding Path=Modelo.EsCerveza, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        />
+    </StackPanel>
+</UserControl>

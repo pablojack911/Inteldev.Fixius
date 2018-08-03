@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Tesoreria.MovimientoBancario.ItemMovimientoBancario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             Loaded="UserControl_Loaded">
+    <StackPanel Margin="10">
+        <controles:ItemFormularioFecha
+            x:Name="PrimerElemento"
+            Etiqueta="Fecha"
+            Fecha="{Binding Path=Objeto.Fecha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioFecha>
+        <controles:ItemFormularioFecha
+            Etiqueta="Fecha Efectiva"
+            Fecha="{Binding Path=Objeto.FechaEfectiva,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioFecha>
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto de Movimiento"
+            Presentador="{Binding PresentadorMovimientoBancario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioMiniBusca>
+        <controles:ItemFormularioNumeroEntero
+            Etiqueta="Número"
+            Valor="{Binding Path=Objeto.Numero, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioNumeroEntero>
+        <controles:ItemFormulario
+            Etiqueta="Detalle"
+            Valor="{Binding Path=Objeto.Detalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormulario>
+        <controles:ItemFormularioNumeroDecimal
+            Etiqueta="Debe"
+            Valor="{Binding Path=Objeto.Debe, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioNumeroDecimal>
+        <controles:ItemFormularioNumeroDecimal
+            Etiqueta="Haber"
+            Valor="{Binding Path=Objeto.Haber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioNumeroDecimal>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Clientes.Tablas.TarjetaMayorista.VistaTarjetaMayorista"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dtoClientes="clr-namespace:Inteldev.Fixius.Servicios.DTO.Clientes;assembly=Inteldev.Fixius.Servicios.DTO"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+
+    <StackPanel Margin="10">
+        <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Habilitado="{Binding CodigoHabilitado}" Visibility="{Binding CodigoVisible}"/>
+        <controles:ItemFormulario x:Name="txtItemNombre" Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></controles:ItemFormulario>
+        <controles:ItemFormulario
+                Etiqueta="Desde"
+                Valor="{Binding Path=Modelo.Desde, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+                />
+        <controles:ItemFormulario
+                Etiqueta="Hasta"
+                Valor="{Binding Path=Modelo.Hasta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+                ></controles:ItemFormulario>
+        <controles:ItemFormularioComboBoxEnums
+                Etiqueta="Uso"
+                Tipo="{x:Type dtoClientes:TipoDeTarjetaMayorista}"
+                Seleccionado="{Binding Path=Modelo.Uso, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                />
+        <controles:ItemFormularioMiniBusca
+                Etiqueta="Hereda"
+                Presentador="{Binding PresentadorMiniBuscaHereda, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                />
+        <controles:ItemFormularioMiniBuscaLista
+                Etiqueta="Ramos"
+                Presentador="{Binding PresentadorMiniBuscaListRamos,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                ></controles:ItemFormularioMiniBuscaLista>
+    </StackPanel>
+</UserControl>

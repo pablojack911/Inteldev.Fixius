@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Articulos.Tablas.Rubro.Rubro"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+    <StackPanel Margin="10">
+        <StackPanel Orientation="Horizontal">
+            <controles:ItemFormulario 
+                            Width="250" x:Name="txtItemCodigo"
+                            Etiqueta="Código" 
+                            Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                            Habilitado="{Binding CodigoHabilitado}" Visibility="{Binding CodigoVisible}"
+                            TamañoMaximo="3"
+                        />
+            <Button Name="btnAceptar" Margin="0,0,0,5"  Command="{Binding CmdBuscar}" CommandParameter="{Binding DesdeCodigo}" Visibility="{Binding BotonCodigoVisible}">
+                <StackPanel Orientation="Horizontal">
+                    <!--<Image Source="/Inteldev.Core.Presentacion;component/Iconos/lupa.png"></Image>-->
+                    <TextBlock VerticalAlignment="Center" Margin="10,0,10,0">Buscar Código disponible</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <controles:ItemFormulario Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"/>
+        <!--<controles:ItemFormularioMiniBusca
+            Etiqueta="Condición de Pago"
+            Presentador="{Binding PresentadorCondicionDePago,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioMiniBusca>-->
+        <!--<controles:ItemFormularioComboBox
+            Etiqueta="Condición de Pago" 
+            ItemsDetalle="{Binding Path=CondicionesDePago}" 
+            Seleccionado="{Binding Path=Modelo.CondicionDePago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Left">
+            <Label Width="150" VerticalAlignment="Center">Condición de Pago</Label>
+            <ComboBox 
+                            ItemsSource="{Binding Path=CondicionesDePago}"
+                            SelectedItem="{Binding Path=Modelo.CondicionDePago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"                            
+                            IsEditable="True"
+                            IsSynchronizedWithCurrentItem="True"
+                            Validation.ErrorTemplate="{StaticResource validationErrorTemplateAside}"  
+                            Width="380"
+                        />
+        </StackPanel>
+        <controles:ItemFormularioCheck
+            Etiqueta="No Incluir en Lista de Precios"
+            Seleccionado="{Binding Path=Modelo.NoIncluirEnListaDePrecios, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            ></controles:ItemFormularioCheck>
+        <controles:ItemFormularioCheck
+            Etiqueta="Admite Convenio"
+            Seleccionado="{Binding Path=Modelo.AdmiteConvenio, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            ></controles:ItemFormularioCheck>
+        <controles:ItemFormulario
+            Width="250"
+            FiltroEntrada="NumericoDecimal"
+            Etiqueta="Acuerdo 1"
+            Valor="{Binding Path=Modelo.Acuerdo1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        />
+        <controles:ItemFormulario
+            Width="250"
+            FiltroEntrada="NumericoDecimal"
+            Etiqueta="Acuerdo 2"
+            Valor="{Binding Path=Modelo.Acuerdo2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        />
+        <controles:ItemFormulario
+            Width="250"
+            FiltroEntrada="NumericoDecimal"
+            Etiqueta="Acuerdo 3"
+            Valor="{Binding Path=Modelo.Acuerdo3, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        />
+        <controles:ItemFormulario
+            Width="250"
+            FiltroEntrada="NumericoDecimal"
+            Etiqueta="Acuerdo 4"
+            Valor="{Binding Path=Modelo.Acuerdo4, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        />
+    </StackPanel>
+</UserControl>

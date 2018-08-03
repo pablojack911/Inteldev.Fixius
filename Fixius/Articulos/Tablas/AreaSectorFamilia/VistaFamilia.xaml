@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Articulos.Tablas.AreaSectorFamilia.VistaFamilia"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:jerarquia="clr-namespace:Inteldev.Fixius.Articulos"
+             xmlns:dtos="clr-namespace:Inteldev.Fixius.Servicios.DTO.Articulos;assembly=Inteldev.Fixius.Servicios.DTO"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+    <StackPanel Margin="10">
+        <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+                    Habilitado="{Binding CodigoHabilitado}" Visibility="{Binding CodigoVisible}"
+                    HorizontalAlignment="Left"/>
+        <jerarquia:BusquedaArticulo
+            x:Name="jerarquia"
+            Presentador="{Binding PresentadorJerarquia, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            AreaSeleccionada="{Binding Area,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            SectorSeleccionado="{Binding Sector,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            SubSectorSeleccionado="{Binding Subsector,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            IsEnabled="{Binding CodigoHabilitado}"
+        />
+        <controles:ItemFormulario 
+                    FocusManager.IsFocusScope="True"
+                    x:Name="txtNombre"
+                    Etiqueta="Familia" 
+                    Valor="{Binding Path=Modelo.Nombre, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+        <Grid MaxHeight="600">
+            <TreeView 
+            Margin="2" Name="arbol"
+            ScrollViewer.CanContentScroll="True"
+            ItemsSource ="{Binding Items,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ArbolVisible}">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type dtos:Jerarquia}"
+                                          ItemsSource="{Binding Nodos}">
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="10" Height="10">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="Red" Offset="0" />
+                                        <GradientStop Color="White" Offset="1" />
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Text="{Binding }"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type sys:String}" >
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+        </Grid>
+    </StackPanel>
+</UserControl>
+

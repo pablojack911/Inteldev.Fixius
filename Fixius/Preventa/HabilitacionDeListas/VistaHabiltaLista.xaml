@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Preventa.HabilitacionDeListas.VistaHabiltaLista"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             >
+    <StackPanel Margin="10">
+        <c:ItemFormularioMiniBusca Etiqueta="Empresa" Presentador="{Binding PresentadorEmpresa}"></c:ItemFormularioMiniBusca>
+        <c:ItemFormularioMiniBusca Etiqueta="Sucursal" Presentador="{Binding PresentadorSucursal}" ></c:ItemFormularioMiniBusca>
+        <c:ItemFormularioMiniBusca Etiqueta="División Comercial" Presentador="{Binding PresentadorDivision}"></c:ItemFormularioMiniBusca>
+        <c:ItemFormularioMiniBusca Etiqueta="Grupo de Clientes" Presentador="{Binding PresentadorGrupo}"></c:ItemFormularioMiniBusca>
+        <c:ItemFormularioMiniBusca Etiqueta="Lista de Precio" Presentador="{Binding PresentadorLista}"></c:ItemFormularioMiniBusca>
+    </StackPanel>
+</UserControl>

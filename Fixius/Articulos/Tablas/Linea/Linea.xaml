@@ -1,0 +1,141 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Articulos.Tablas.Linea.Linea"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+    <ScrollViewer>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <controles:ItemFormulario 
+                            Width="250" x:Name="txtItemCodigo"
+                            Etiqueta="Código" 
+                            Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                            Habilitado="{Binding CodigoHabilitado}" Visibility="{Binding CodigoVisible}"
+                            TamañoMaximo="3"
+                        />
+                <Button Name="btnAceptar" Margin="0,0,0,5"  Command="{Binding CmdBuscar}" CommandParameter="{Binding DesdeCodigo}" Visibility="{Binding BotonCodigoVisible}">
+                    <StackPanel Orientation="Horizontal">
+                        <!--<Image Source="/Inteldev.Core.Presentacion;component/Iconos/lupa.png"></Image>-->
+                        <TextBlock VerticalAlignment="Center" Margin="10,0,10,0">Buscar Código disponible</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <controles:ItemFormulario 
+                x:Name="txtCampoNombre"
+                Etiqueta="Nombre" 
+                Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+            />
+            <controles:ItemFormularioMiniBusca
+                Etiqueta="Concepto De Movimiento"
+                Presentador="{Binding PresentadorConceptoMovimiento, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <!--<controles:ItemFormularioComboBox
+                Etiqueta="Condición de Pago" 
+                ItemsDetalle="{Binding Path=CondicionesDePago}" 
+                Seleccionado="{Binding Path=Modelo.CondicionDePago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            />-->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Left">
+                <Label Width="150" VerticalAlignment="Center">Condición de Pago</Label>
+                <ComboBox 
+                            ItemsSource="{Binding Path=CondicionesDePago}"
+                            SelectedItem="{Binding Path=Modelo.CondicionDePago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"                            
+                            IsEditable="True"
+                            IsSynchronizedWithCurrentItem="True"
+                            Validation.ErrorTemplate="{StaticResource validationErrorTemplateAside}"  
+                            Width="380"
+                        />
+            </StackPanel>
+            <!--<controles:ItemFormularioMiniBusca
+                Etiqueta="Condicion De Pago"
+                Presentador="{Binding PresentadorCondicionDePago, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />-->
+            <controles:ItemFormulario
+                Width="250"
+                FiltroEntrada="NumericoEntero"
+                Etiqueta="Reposición"
+                Valor="{Binding Path=Modelo.Reposicion, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormulario
+                Width="250"
+                FiltroEntrada="NumericoEntero"
+                Etiqueta="Stock Crítico"
+                Valor="{Binding Path=Modelo.StockCritico, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormulario
+                Width="250"
+                FiltroEntrada="NumericoDecimal"
+                Etiqueta="Acuerdo 1"
+                Valor="{Binding Path=Modelo.Acuerdo1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormulario
+                Width="250"
+                FiltroEntrada="NumericoDecimal"
+                Etiqueta="Acuerdo 2"
+                Valor="{Binding Path=Modelo.Acuerdo2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormulario
+                Width="250"
+                FiltroEntrada="NumericoDecimal"
+                Etiqueta="Acuerdo 3"
+                Valor="{Binding Path=Modelo.Acuerdo3, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormulario
+                Width="250"
+                FiltroEntrada="NumericoDecimal"
+                Etiqueta="Acuerdo 4"
+                Valor="{Binding Path=Modelo.Acuerdo4, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <!--<controles:ItemFormularioMiniBusca
+                Etiqueta="Empresa"
+                Presentador="{Binding PresentadorEmpresa, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />-->
+            <!--<controles:ItemFormularioComboBox
+                Etiqueta="Empresa" 
+                ItemsDetalle="{Binding Path=Empresas}" 
+                Seleccionado="{Binding Path=Modelo.Empresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            />-->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Left">
+                <Label Width="150" VerticalAlignment="Center">Empresa</Label>
+                <ComboBox 
+                            ItemsSource="{Binding Path=Empresas}"
+                            SelectedItem="{Binding Path=Modelo.Empresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"                            
+                            IsEditable="True"
+                            IsSynchronizedWithCurrentItem="True"
+                            Validation.ErrorTemplate="{StaticResource validationErrorTemplateAside}"  
+                            Width="380"
+                        />
+            </StackPanel>
+            <controles:ItemFormularioCheck
+                Etiqueta="Admite Convenio"
+                Seleccionado="{Binding Path=Modelo.AdmiteConvenio, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormularioCheck
+                Etiqueta="Incluir en Estadistica"
+                Seleccionado="{Binding Path=Modelo.IncluirEnEstadistica, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormularioCheck
+                Etiqueta="Precarga Separada"
+                Seleccionado="{Binding Path=Modelo.PrecargaSeparada, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormularioCheck
+                Etiqueta="No Valorizar"
+                Seleccionado="{Binding Path=Modelo.NoValorizar, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormularioCheck
+                Etiqueta="Permite OC Abierta"
+                Seleccionado="{Binding Path=Modelo.PermiteOCAbierta, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormularioCheck
+                Etiqueta="Monitorear Objetivos"
+                Seleccionado="{Binding Path=Modelo.MonitorearObjetivos, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <controles:ItemFormularioCheck
+                Etiqueta="Incluir Deposito 3"
+                Seleccionado="{Binding Path=Modelo.IncluirDeposito3, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

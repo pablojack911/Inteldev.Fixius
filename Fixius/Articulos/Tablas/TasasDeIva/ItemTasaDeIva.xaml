@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Articulos.Tablas.TasasDeIva.ItemTasaDeIva"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dto="clr-namespace:Inteldev.Fixius.Servicios.DTO.Contabilidad;assembly=Inteldev.Fixius.Servicios.DTO"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Template="{StaticResource FondoAzulCopado}"
+             Loaded="UserControl_Loaded">
+    <Grid>
+        <StackPanel Margin="10">
+            <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+                    Habilitado="{Binding CodigoHabilitado}" Visibility="{Binding CodigoVisible}"
+                    HorizontalAlignment="Left"/>
+            <controles:ItemFormulario 
+                    FocusManager.IsFocusScope="True"
+                    x:Name="txtNombre"
+                    Etiqueta="Nombre" 
+                    Valor="{Binding Path=Modelo.Nombre, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+            <controles:ItemFormulario
+                Etiqueta="Valor"
+                Valor="{Binding Path=Modelo.Valor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                FiltroEntrada="NumericoDecimal"
+                Width="250"
+            />
+            <controles:ItemFormularioComboBoxEnums
+                        Etiqueta="Tasas De Iva"
+                        Tipo="dto:EnumTasas"
+                        Seleccionado="{Binding Path=Modelo.Enum ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        ></controles:ItemFormularioComboBoxEnums>
+        </StackPanel>
+    </Grid>
+</UserControl>

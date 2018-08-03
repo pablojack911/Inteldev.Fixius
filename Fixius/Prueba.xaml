@@ -1,0 +1,18 @@
+﻿<Window x:Class="Inteldev.Fixius.Prueba"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Prueba" Height="300" Width="300">
+    <Window.Resources>
+        <ControlTemplate x:Key="Custom2" TargetType="{x:Type Button}">
+            <Grid x:Name="ButtonGrid" Margin="-153,0,-57,0">
+                <Border Margin="2" Padding="10" BorderThickness="2" BorderBrush="Blue" />
+                <TextBox Height="30" Width="Auto" Margin="0,6"></TextBox>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Button  Template="{StaticResource Custom2}" Margin="227,12,111,216"   >
+            </Button>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="161,134,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>

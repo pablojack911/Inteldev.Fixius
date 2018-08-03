@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Clientes.Maestro.VistaConfiguracionCredito"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:Inteldev.Core.Presentacion;assembly=Inteldev.Core.Presentacion"
+             mc:Ignorable="d"
+             Focusable="True">
+    <Grid>
+        <!--<StackPanel Margin="10"  i:PermisoManager.Enabled="{Binding Editable}">-->
+        <StackPanel Margin="10">
+
+            <c:ItemFormularioNumeroEntero
+            Etiqueta="Limite"
+            Valor="{Binding Path=Modelo.Limite, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <c:ItemFormularioMiniBusca
+                Etiqueta="Vendedor"
+                Presentador="{Binding PresentadorVendedor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                ></c:ItemFormularioMiniBusca>
+            <c:ItemFormularioMiniBusca
+                Etiqueta="Cobrador"
+                Presentador="{Binding PresentadorCobrador, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                ></c:ItemFormularioMiniBusca>
+            <c:ItemFormularioMiniBusca
+                Etiqueta="Vendedor Especial"
+                Presentador="{Binding PresentadorVendedorEspecial, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                ></c:ItemFormularioMiniBusca>
+            <c:ItemFormularioMiniBusca
+                Etiqueta="Condición De Pago"
+                Presentador="{Binding PresentadorCondicionDePago, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                ></c:ItemFormularioMiniBusca>
+            <c:ItemFormularioMiniBusca
+            	Etiqueta="Condición De Pago 2"
+            	Presentador="{Binding PresentadorCondicionDePago2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                />
+            <c:ItemFormularioCheck Etiqueta="Respeta Condicion de Pago 2" Seleccionado="{Binding Path=Modelo.RespetarCondicionDePago2,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></c:ItemFormularioCheck>
+        </StackPanel>
+    </Grid>
+</UserControl>

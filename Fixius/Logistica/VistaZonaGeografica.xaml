@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Logistica.VistaZonaGeografica"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:mapa="clr-namespace:Inteldev.Fixius.Mapas"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}"
+             >
+        <TabControl>
+            <TabItem Header="Básicos">
+                <StackPanel Margin="10">
+                    <!--<controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                        Habilitado="{Binding CodigoHabilitado}" Visibility="{Binding CodigoVisible}"/>-->
+                    <StackPanel Orientation="Horizontal">
+                        <controles:ItemFormulario 
+                            Width="250" x:Name="txtItemCodigo"
+                            Etiqueta="Código" 
+                            Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                            Habilitado="{Binding CodigoHabilitado}" Visibility="{Binding CodigoVisible}"
+                            TamañoMaximo="5"
+                        />
+                        <Button Name="btnAceptar" Margin="0,0,0,5"  Command="{Binding CmdBuscar}" CommandParameter="{Binding DesdeCodigo}" Visibility="{Binding BotonCodigoVisible}">
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Image Source="/Inteldev.Core.Presentacion;component/Iconos/lupa.png"></Image>-->
+                                <TextBlock VerticalAlignment="Center" Margin="10,0,10,0">Buscar Código disponible</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <controles:ItemFormulario 
+                        Etiqueta="Nombre" 
+                        Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                    />
+                    <controles:ItemFormularioMiniBusca
+                        Etiqueta="Provincia"
+                        Presentador="{Binding PresentadorProvincia, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                        Entidad="{Binding Path=Modelo.Provincia,Mode=TwoWay, ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                    />
+                    <controles:ItemFormularioMiniBusca
+                        Etiqueta="Localidad"
+                        Presentador="{Binding PresentadorLocalidad, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                        Entidad="{Binding Path=Modelo.Localidad,Mode=TwoWay, ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                    />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Mapa" >
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="100*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="100*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Click="Button_Click">Dibujar</Button>
+                    <Button Grid.Column="1">Eliminar</Button>
+                    <mapa:Map x:Name="mapa" Grid.Row="1" Grid.ColumnSpan="4"></mapa:Map>
+                </Grid>
+
+
+            </TabItem>
+        </TabControl>
+</UserControl>

@@ -1,0 +1,61 @@
+﻿<Grid x:Class="Inteldev.Fixius.Articulos.Tablas.Areas.ItemFormularioArea"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d" 
+             d:DesignHeight="128" d:DesignWidth="383" >
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="100" Height="25">Área</TextBlock> 
+            <ComboBox Name="cboArea" ItemsSource="{Binding Areas}" Width="200"  SelectedItem="{Binding Area, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Nombre}"></TextBlock> 
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>                
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="100" Height="25">Sector</TextBlock>
+            <ComboBox Width="200" Name ="cboSector" ItemsSource="{Binding Sectores,Mode=TwoWay}" SelectedItem="{Binding Sector}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Nombre}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>            
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="100" Height="25">Subsector</TextBlock>
+            <ComboBox Width="200" Name="cboSubsector" ItemsSource="{Binding Subsectores}" SelectedItem="{Binding Subsector}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Nombre}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="100" Height="25">Familia</TextBlock>
+            <ComboBox Width="200" Name="cboFamilia" ItemsSource="{Binding Familias}" SelectedItem="{Binding Familia}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Nombre}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" >
+            <TextBlock Width="100" Height="25">Subfamilia</TextBlock>
+            <ComboBox Width="200" Name="cboSubfamilia" ItemsSource="{Binding Subfamilias}" SelectedItem="{Binding Subfamilia}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Nombre}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+    </StackPanel>
+    
+</Grid>

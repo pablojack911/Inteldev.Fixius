@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Clientes.Tablas.VistaReferenciaContable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <GroupBox Header="Imputaciones Automaticas">
+        <ListBox>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Imputacion}"></TextBlock>
+                        <controles:ItemFormularioMiniBusca Presentador="PresentadorConceptos"></controles:ItemFormularioMiniBusca>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+    </GroupBox>
+</UserControl>

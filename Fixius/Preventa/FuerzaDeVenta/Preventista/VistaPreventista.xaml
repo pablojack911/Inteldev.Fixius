@@ -1,0 +1,63 @@
+﻿<UserControl 
+    x:Class="Inteldev.Fixius.Preventa.FuerzaDeVenta.Preventista.VistaPreventista"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+    Loaded="UserControl_Loaded"
+    Template="{StaticResource FondoAzulCopado}">
+    <TabControl HorizontalAlignment="Left" VerticalAlignment="Top">
+        <TabItem Header="Básicos">
+            <StackPanel Margin="10">
+                <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                    Habilitado="{Binding CodigoHabilitado}"/>
+                <controles:ItemFormulario Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, ValidatesOnDataErrors=True,NotifyOnValidationError=True}"></controles:ItemFormulario>
+                <controles:ItemFormulario Etiqueta="Domicilio" Valor="{Binding Path=Modelo.Domicilio, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                <!--<controles:ItemFormularioMiniBuscaLista
+            Etiqueta="Divisiones Comerciales"
+            Presentador="{Binding PresentadorDivisionComercial, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            ></controles:ItemFormularioMiniBuscaLista>-->
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Datos Anteriores">
+            <StackPanel Margin="10">
+                <controles:ItemFormularioCheck
+                    Etiqueta="Inactivo"
+                    Seleccionado="{Binding Path=Modelo.DatosOldPreventa.Inactivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    x:Name="Inactivo"/>
+                <controles:ItemFormularioCheck
+                    Etiqueta="Es Supervisor"
+                    Seleccionado="{Binding Path=Modelo.DatosOldPreventa.EsSupervisor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    FocusManager.IsFocusScope="True"                    
+                    x:Name="EsSupervisor"/>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Mobile" >
+            <StackPanel Margin="10">
+                <controles:ItemFormulario
+                    FocusManager.IsFocusScope="True"
+                    x:Name="Usuario"
+                    Etiqueta="Usuario"
+                    Valor="{Binding Path=Modelo.Usuario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <controles:ItemFormulario
+                    Etiqueta="Contraseña"
+                    Valor="{Binding Path=Modelo.Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Orientation="Horizontal">
+                <controles:ItemFormulario
+                    Width="380"
+                    Etiqueta="Foto"
+                    Valor="{Binding Path=Modelo.Foto,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    IsEnabled="False"/>
+                    <Button
+                        Name="btnBuscar" 
+                        Command="{Binding ComandoElegirFoto}" 
+                        Content="..." 
+                        Margin="5,0,0,0" 
+                        Height="25" Width="30"
+                        VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Proveedores.CuentasAPagar.CargaComprobantes.CabeceraDocumentoDeCompra"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:dto="clr-namespace:Inteldev.Fixius.Servicios.DTO.Proveedores;assembly=Inteldev.Fixius.Servicios.DTO">
+    <StackPanel>
+        <controles:ItemFormularioMiniBusca
+            x:Name="empresa"
+            Etiqueta="Empresa"
+            Presentador="{Binding PresentadorEmpresa,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Entidad="{Binding Empresa, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        />
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Sucursal"
+            Presentador="{Binding PresentadorSucursal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Entidad="{Binding Sucursal, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        />
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Proveedor"
+            Presentador="{Binding PresentadorProveedor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            Entidad="{Binding Proveedor, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        />
+        <controles:ItemFormulario
+            Width="250"
+            Valor="{Binding CuitProveedorSeleccionado,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding VisibilidadCuitProveedor}"
+            IsEnabled="False"
+        />
+        <controles:ItemFormularioComboBoxEnums
+            x:Name="TipoDocumento"
+            Tipo="{x:Type dto:TipoDocumento}"
+            Etiqueta="Tipo Documento"
+            Seleccionado="{Binding Path=TipoDocumento, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        />
+        <StackPanel Orientation="Horizontal">
+            <controles:ItemFormulario
+                Width="250" FiltroEntrada="NumericoEntero" TamañoMaximo="4"
+                Etiqueta="Numero"
+                Valor="{Binding Path=PreNumero, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <TextBox 
+                Margin="1,0,0,5"
+                Width="150"
+                Text="{Binding Path=Numero, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            />
+            <Button 
+                x:Name="btnBuscarOGrabar"
+                Command="{Binding BotonBuscaDocumentoDeCompra}" Margin="15,0,5,5" Padding="10,0,10,0" Height="25">Buscar O Crear</Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

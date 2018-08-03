@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Articulos.Tablas.Envase.ItemArticuloEnvase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             Loaded="UserControl_Loaded"
+             >
+    <StackPanel Margin="10">
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Articulo" x:Name="Articulo"
+            Presentador="{Binding PresentadorArticulo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        />
+        <controles:ItemFormulario
+            Width="250" FiltroEntrada="NumericoDecimal"
+            Etiqueta="Precio unitario"
+            Valor="{Binding Path=Objeto.PrecioUnitario,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        />
+        <controles:ItemFormulario
+            Width="250" FiltroEntrada="NumericoEntero"    
+            Etiqueta="Cantidad"
+            Valor="{Binding Path=Objeto.Cantidad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        />
+        <controles:ItemFormularioCheck
+            Etiqueta="Fraccion"
+            Seleccionado="{Binding Path=Objeto.Fraccion,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        />
+    </StackPanel>
+</UserControl>

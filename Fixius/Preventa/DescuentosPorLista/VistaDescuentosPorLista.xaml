@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Preventa.DescuentosPorLista.VistaDescuentosPorLista"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:f="clr-namespace:Inteldev.Fixius.Preventa.DescuentosPorLista"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+    <UserControl.Resources>
+        <f:DescuentosToText x:Key="descuentoToText"></f:DescuentosToText>
+    </UserControl.Resources>
+    <StackPanel Margin="10">
+        <c:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Habilitado="{Binding CodigoHabilitado}"/>
+        <c:ItemFormulario Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></c:ItemFormulario>
+        <c:ItemFormularioFecha Etiqueta="Desde Fecha" Fecha="{Binding Path=Modelo.DesdeFecha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></c:ItemFormularioFecha>
+        <c:ItemFormularioFecha Etiqueta="Hasta Fecha" Fecha="{Binding Path=Modelo.HastaFecha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></c:ItemFormularioFecha>
+        <c:ItemFormularioMiniBusca Etiqueta="Lista" Presentador="{Binding PresentadorMiniBuscaLista}"></c:ItemFormularioMiniBusca>
+        <c:ItemFormularioGrilla Etiqueta="Descuentos" Presentador="{Binding PresentadorGrilla}"  HorizontalAlignment="Left" Height="300" Width="800">
+            <c:ItemFormularioGrilla.Columnas>
+                <DataGridTextColumn Header="Área" Binding="{Binding Area}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Sector" Binding="{Binding Sector}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Subsector" Binding="{Binding Subsector}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Familia" Binding="{Binding Familia}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Subfamilia" Binding="{Binding Subfamilia}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Marca" Binding="{Binding Marca}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Artículo" Binding="{Binding Articulo}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Descuentos" Binding="{Binding Descuentos, Converter={StaticResource ResourceKey=descuentoToText}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                
+            </c:ItemFormularioGrilla.Columnas>
+        </c:ItemFormularioGrilla>
+    </StackPanel>
+</UserControl>

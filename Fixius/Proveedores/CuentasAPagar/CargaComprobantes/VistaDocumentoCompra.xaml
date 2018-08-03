@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Proveedores.CuenasAPagar.CargaComprobantes.VistaDocumentoCompra"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:dto="clr-namespace:Inteldev.Fixius.Servicios.DTO.Proveedores;assembly=Inteldev.Fixius.Servicios.DTO"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:controlesComprobante="clr-namespace:Inteldev.Fixius.Proveedores.CuenasAPagar.CargaComprobantes"
+             Template="{StaticResource FondoAzulCopado}"
+             >
+    <TabControl>
+        <TabItem Header="Básicos">
+            <AdornerDecorator>
+                <StackPanel Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Text="{Binding TipoComprobante ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="14" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                        <TextBlock Text="{Binding Comprobante,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="14" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                    <controles:ItemFormularioMiniBusca
+                        x:Name="comboProveedor"
+                        Etiqueta="Proveedor"
+                        Presentador="{Binding PresentadorMiniBuscaProveedor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    />
+                    <controles:ItemFormularioComboBoxEnums
+                        x:Name="tipos"
+                        Tipo="{x:Type dto:TipoDocumento}"
+                        Etiqueta="Tipo Documento"
+                        Seleccionado="{Binding Path=Modelo.TipoDocumento, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    />
+                    <StackPanel Orientation="Horizontal">
+                        <controles:ItemFormulario
+                            Width="250" FiltroEntrada="NumericoEntero" TamañoMaximo="4"
+                            Etiqueta="Numero"
+                            Valor="{Binding Path=Modelo.Prenumero, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        />
+                        <TextBox 
+                            Margin="1,0,0,5"
+                            Width="150"
+                            Text="{Binding Path=Modelo.Numero, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        />
+                    </StackPanel>
+                    <controles:ItemFormularioMiniBusca
+                        HorizontalAlignment="Left"
+                        Etiqueta="Cuenta Bancaria"
+                        Visibility="{Binding VistaMiniBuscas,UpdateSourceTrigger=PropertyChanged}"
+                        Presentador="{Binding PresentadorCuentaBancaria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    />
+                    <controles:ItemFormularioMiniBusca
+                        HorizontalAlignment="Left"
+                        Visibility="{Binding VistaMiniBuscas,UpdateSourceTrigger=PropertyChanged}"
+                        Etiqueta="Movimiento Bancario"
+                        Presentador="{Binding PresentadorMovimientoBancario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    />
+                    <controles:ItemFormularioMiniBusca
+                        HorizontalAlignment="Left"
+                        Etiqueta="Concepto De Movimiento"
+                        Visibility="{Binding VistaMiniBuscas,UpdateSourceTrigger=PropertyChanged}"
+                        Presentador="{Binding PresentadorConceptoMovimientoBancario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    />
+                    <controles:ItemFormularioFecha HorizontalAlignment="Left"
+                        Name="fechaIngreso"
+                        Etiqueta="Fecha Ingreso"
+                        Visibility="{Binding NotaCredito, UpdateSourceTrigger=PropertyChanged}"
+                        Fecha="{Binding Path=Modelo.FechaIngreso,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    />
+                    <controles:ItemFormularioFecha HorizontalAlignment="Left"
+                        Etiqueta="Fecha Contable"
+                        Visibility="{Binding NotaCredito,UpdateSourceTrigger=PropertyChanged}"
+                        Fecha="{Binding Path=Modelo.FechaContable, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
+                    />
+                    <controles:ItemFormularioFecha HorizontalAlignment="Left"
+                        Etiqueta="Fecha Vencimiento"
+                        Visibility="{Binding NotaCredito,UpdateSourceTrigger=PropertyChanged}"
+                        Fecha="{Binding Path=Modelo.FechaVencimiento, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    />
+                    <controles:ItemFormularioComboBoxEnums
+            		    Etiqueta="Forma De Pago"
+            		    Tipo="{x:Type dto:FormaDePago}"
+                        Visibility="{Binding NotaCredito, UpdateSourceTrigger=PropertyChanged}"
+            		    Seleccionado="{Binding Modelo.FormaDePago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    />
+                    <controles:ItemFormularioNumeroDecimal
+                        Etiqueta="Importe"
+                        Valor="{Binding Path=Modelo.Importe, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat=N3, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" IsEnabled="{Binding ImporteEnabled, UpdateSourceTrigger=PropertyChanged}"
+                    />
+                    <controles:ItemFormularioGrilla
+                        x:Name="conceptos"
+        	            Etiqueta="Conceptos"
+                        IsEnabled="{Binding Enbled, UpdateSourceTrigger=PropertyChanged}"
+                        Visibility="{Binding NotaCredito, UpdateSourceTrigger=PropertyChanged}"
+        	            Presentador="{Binding PresentadorConceptos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="200"
+                        HorizontalAlignment="Left" Width="685"
+                    >
+                        <controles:ItemFormularioGrilla.Columnas>
+                            <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}"/>
+                            <DataGridTextColumn Header="Concepto De Movimiento" Binding="{Binding Concepto}"/>
+                            <DataGridTextColumn Header="Debe" Binding="{Binding Debe, StringFormat=N3}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Haber" Binding="{Binding Haber, StringFormat=N3}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                        </controles:ItemFormularioGrilla.Columnas>
+                    </controles:ItemFormularioGrilla>
+                </StackPanel>
+            </AdornerDecorator>
+        </TabItem>
+        <TabItem Header="Autorizacion">
+            <AdornerDecorator>
+                <StackPanel>
+                    <controles:ItemFormularioMiniBusca Etiqueta="Autoriza" Presentador="{Binding PresentadorAutoriza, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"></controles:ItemFormularioMiniBusca>
+                    <controles:ItemFormularioTextMultilinea Etiqueta="Motivo" Texto="{Binding Path=Modelo.Motivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"></controles:ItemFormularioTextMultilinea>
+                </StackPanel>
+            </AdornerDecorator>
+        </TabItem>
+        <TabItem
+            Header="Imputaciones"
+            Visibility="{Binding Imputaciones, UpdateSourceTrigger=PropertyChanged}"
+            >
+            <StackPanel>
+                <Grid>
+                    <Label Content="Notas Pendientes" HorizontalAlignment="Left" Width="121"/>
+                    <DataGrid Height="209" Margin="121,0,0,0" ItemsSource="{Binding Path=Modelo.NotasPendientes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsEnabled="True" IsReadOnly="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="PreNumero" Binding="{Binding Prenumero, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Numero" Binding="{Binding Numero, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Importe" Binding="{Binding Importe, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridCheckBoxColumn Header="Seleccionado" Binding="{Binding Seleccionado, UpdateSourceTrigger=PropertyChanged}"></DataGridCheckBoxColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Deposito.VistaFacturaDeCompra"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:c="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             >
+    <StackPanel Margin="10">
+        <c:ItemFormulario Width="250" Etiqueta="Sucursal" Valor="{Binding Path=Objeto.Sucursal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></c:ItemFormulario>
+        <c:ItemFormulario Width="250"  Etiqueta="Número" Valor="{Binding Path=Objeto.Numero,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></c:ItemFormulario >
+        <c:ItemFormularioNumeroEntero Etiqueta="Bultos" Valor="{Binding Path=Objeto.Bultos,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></c:ItemFormularioNumeroEntero>
+        <c:ItemFormularioNumeroDecimal Etiqueta="Neto" Valor="{Binding Path=Objeto.Neto,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></c:ItemFormularioNumeroDecimal>
+    </StackPanel>
+</UserControl>

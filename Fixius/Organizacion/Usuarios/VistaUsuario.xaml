@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Organizacion.Usuarios.VistaUsuario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:dto="clr-namespace:Inteldev.Core.DTO.Organizacion;assembly=Inteldev.Core.DTO"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+
+    <Grid>
+        <StackPanel Margin="10">
+            <controles:ItemFormulario 
+                Width="250" x:Name="txtItemCodigo" Visibility="{Binding CodigoVisible}" Etiqueta="Código" IsEnabled="{Binding CodigoHabilitado}"
+                Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"/>
+            <controles:ItemFormulario Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"/>
+            <controles:ItemPassword
+                HorizontalAlignment="Left"
+                Clave="{Binding Path=Modelo.Clave, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"/>
+            <controles:ItemFormularioMiniBusca                 
+                Presentador="{Binding PresentadorPerfil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Etiqueta="Perfil"
+                Entidad="{Binding Path=Modelo.PerfilUsuario,Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"
+                />
+            <controles:ItemFormularioMiniBusca
+                Presentador="{Binding PresentadorEmpresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Etiqueta="Empresa"
+                Entidad="{Binding Path=Modelo.EmpresaPorDefecto,Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True}"
+                />
+            <controles:ItemFormularioComboBoxEnums
+                Etiqueta="Unidad De Negocio"
+                Tipo="{x:Type dto:UnidadeDeNegocio}"
+                Seleccionado="{Binding Path=Modelo.UnidadNegocioActual, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                />
+
+        </StackPanel>
+    </Grid>
+</UserControl>

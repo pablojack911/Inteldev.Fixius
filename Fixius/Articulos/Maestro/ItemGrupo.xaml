@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Articulos.Maestro.ItemGrupo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion" 
+             >
+    <Grid>
+        <StackPanel>
+            <controles:ItemFormularioID  ID="{Binding Path=Objeto.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <controles:ItemFormulario Etiqueta="Nombre" Valor="{Binding Path=Objeto.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controles:ItemFormulario>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,58 @@
+﻿<UserControl
+    x:Class="Inteldev.Fixius.Preventa.Precios.CambioDePrecios.VistaNuevoCambioDePreciosDeVenta"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:c2="clr-namespace:Inteldev.Fixius.Articulos"
+    xmlns:c="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+    xmlns:dto="clr-namespace:Inteldev.Fixius.Servicios.DTO.Precios;assembly=Inteldev.Fixius.Servicios.DTO"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+   Loaded="UserControl_Loaded">
+    <StackPanel Margin="10">
+        <c:ItemFormularioComboBoxEnums
+            Etiqueta="Tipo" 
+            Tipo="{x:Type dto:TipoCambioDePreciosDeVenta}"
+            Seleccionado="{Binding Tipo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            x:Name="comboInicial"
+        />
+        <AdornerDecorator
+            Name="PanelFolder"
+            IsEnabled="{Binding FolderEnabled,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <c:ItemFormularioMiniBusca
+                Etiqueta="Folder"
+                Presentador="{Binding PresentadorMiniBuscaFolder}"
+            />
+        </AdornerDecorator>
+        <AdornerDecorator 
+            Name="PanelArea"
+            IsEnabled="{Binding AreaEnabled,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <StackPanel>
+                <c2:BusquedaArticulo
+                    Presentador="{Binding PresentadorArea}"
+                    AreaSeleccionada="{Binding Area, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SectorSeleccionado="{Binding Sector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SubSectorSeleccionado="{Binding Subsector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    FamiliaSeleccionado="{Binding Familia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SubFamiliaSeleccionado="{Binding Subfamilia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                />
+                <!--<c:ItemFormularioComboBox
+                    Etiqueta="Marca"
+                    ItemsDetalle="{Binding Marcas,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                    Seleccionado="{Binding Marca,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                />-->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Left">
+                    <Label Width="150" VerticalAlignment="Center">Marca</Label>
+                    <ComboBox 
+                            ItemsSource="{Binding Path=Marcas}"
+                            SelectedItem="{Binding Path=Modelo.Marca, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"                            
+                            IsEditable="True"
+                            IsSynchronizedWithCurrentItem="True"
+                            Validation.ErrorTemplate="{StaticResource validationErrorTemplateAside}"  
+                            Width="380"
+                        />
+                </StackPanel>
+            </StackPanel>
+        </AdornerDecorator>
+    </StackPanel>
+</UserControl>

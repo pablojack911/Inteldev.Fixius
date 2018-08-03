@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Tesoreria.CuentaBancaria.CuentaBancaria"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+    <StackPanel Margin="10">
+        <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Habilitado="{Binding CodigoHabilitado}"/>
+        <controles:ItemFormulario Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></controles:ItemFormulario>
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Banco"
+            Presentador="{Binding PresentadorBanco, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioMiniBusca>
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Empresa"
+            Presentador="{Binding PresentadorEmpresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioMiniBusca>
+        <controles:ItemFormularioGrilla
+            Etiqueta="Movimientos"
+            Presentador="{Binding PresentadorGrilla,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="170" Margin="0,0,5,0"
+            >
+            <controles:ItemFormularioGrilla.Columnas>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Fecha Efectiva" Binding="{Binding FechaEfectiva}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Concepto Movimiento" Binding="{Binding ConceptoMovimientoBancario}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Numero" Binding="{Binding Numero}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Detalle" Binding="{Binding Detalle}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Debe" Binding="{Binding Debe}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Haber" Binding="{Binding Haber}"></DataGridTextColumn>
+            </controles:ItemFormularioGrilla.Columnas>
+        </controles:ItemFormularioGrilla>
+    </StackPanel>
+</UserControl>

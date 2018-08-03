@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Preventa.ListaDePrecios.VistaListeDePreciosDeVenta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:dto="clr-namespace:Inteldev.Fixius.Servicios.DTO.Precios;assembly=Inteldev.Fixius.Servicios.DTO"
+             Loaded="UserControl_Loaded"
+             Template="{StaticResource FondoAzulCopado}">
+
+    <UserControl.Resources>
+        <DataTemplate DataType="dto:ItemListaDePreciosDeVenta">
+            <TextBox Text=" Prueba "></TextBox>
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel Margin="10">
+        <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Habilitado="{Binding CodigoHabilitado}"/>
+        <controles:ItemFormulario Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></controles:ItemFormulario>
+        <controles:ItemFormularioGrilla Etiqueta="Artículos" 
+                                        Height="408" 
+                                        Width="700"
+                                        HorizontalAlignment="Left"
+                                        AutoGenerarColumnas="False"
+                                        
+                                        Presentador="{Binding PresentadorItemListaDePrecio, Mode= TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+            <controles:ItemFormularioGrilla.Columnas>
+                <DataGridTextColumn Header="Área" Width="70" Binding="{Binding Path=Area}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Sector" Width="70" Binding="{Binding Path=Sector}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Subsector" Width="70" Binding="{Binding Path=Subsector}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Familia" Width="70" Binding="{Binding Path=Familia}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Subfamilia" Width="70" Binding="{Binding Path=Subfamilia}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Marca" Binding="{Binding Path=Marca}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Artículo" Width="150" Binding="{Binding Path=Articulo}"></DataGridTextColumn>
+            </controles:ItemFormularioGrilla.Columnas>
+        </controles:ItemFormularioGrilla>
+
+    </StackPanel>
+</UserControl>

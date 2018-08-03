@@ -1,0 +1,430 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Proveedores.CuentasAPagar.CargaComprobantes.ItemsConceptosDocumentoCompra"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             >
+    <Grid Margin="0,5,0,0" FocusManager.IsFocusScope="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="280"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            VerticalAlignment="Center">Neto 1</Label>
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            VerticalAlignment="Center">IVA Tasa General</Label>
+        <Label
+            Grid.Row="4"
+            Grid.Column="0"
+            VerticalAlignment="Center">Neto 2</Label>
+        <Label
+            Grid.Row="6"
+            Grid.Column="0"
+            VerticalAlignment="Center">IVA Tasa Reducida</Label>
+        <Label
+            Grid.Row="8"
+            Grid.Column="0"
+            VerticalAlignment="Center">Neto 3</Label>
+        <Label
+            Grid.Row="10"
+            Grid.Column="0"
+            VerticalAlignment="Center">IVA Tasa Incrementada</Label>
+        <Label
+            Grid.Row="12"
+            Grid.Column="0"
+            VerticalAlignment="Center">Exento</Label>
+        <Label
+            Grid.Row="14"
+            Grid.Column="0"
+            VerticalAlignment="Center">Percepción IVA</Label>
+        <Label
+            Grid.Row="16"
+            Grid.Column="0"
+            VerticalAlignment="Center">Percepción IIBB</Label>
+        <Label
+            Grid.Row="18"
+            Grid.Column="0"
+            VerticalAlignment="Center">Impuesto Interno</Label>
+        <Label
+            Grid.Row="20"
+            Grid.Column="0"
+            VerticalAlignment="Center">Final</Label>
+        <TextBox 
+            x:Name="txtNeto1"
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding Neto1, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+        />
+        <!--<controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoNeto1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoNeto1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoNeto1Visible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+        <controles:ItemFormularioComboBox
+            Etiqueta="Concepto"
+            Visibility="{Binding ConceptoNeto1Visible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Seleccionado="{Binding ConceptoNeto1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            ItemsDetalle="{Binding Path=ItemsConceptosNeto}"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"
+            />
+        <!--<controles:ItemFormulario
+            x:Name="txtNeto1"
+            Grid.Row="0" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding Neto1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            VerticalAlignment="Center"
+            Etiqueta="Neto 1" 
+            FiltroEntrada="NumericoDecimal"
+            CantidadDeDecimales="3"
+            FormatoDeString="DECIMAL"
+            OrientacionDelTextBox ="Right"
+        />-->
+        <TextBox 
+            x:Name="txtIvaTasaGral"
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding IvaTasaGeneral, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"        
+        />
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoIvaTasaGeneral,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoTasaIvaGeneral,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoIvaTasaGeneralVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="3"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtIvaTasaGral"
+            Grid.Row="1" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding IvaTasaGeneral,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            Etiqueta="IVA Tasa General" 
+            OrientacionDelTextBox ="Right"
+        />-->
+        <TextBox
+            x:Name="txtNeto2"
+            Grid.Row="4"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding Neto2, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"        
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+        />
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoNeto2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoNeto2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoNeto2Visible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="5"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtNeto2"
+            Grid.Row="2" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding Neto2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            Etiqueta="Neto 2" 
+            OrientacionDelTextBox ="Right"
+        />-->
+        <TextBox
+            x:Name="txtIvaTasaRed"
+            Grid.Row="6"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding IvaTasaReducida,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"     
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+        />
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoIvaTasaReducida,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoTasaIvaReducida,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoIvaTasaReducidaVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="7"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtIvaTasaRed"
+            Grid.Row="3" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding IvaTasaReducida,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            Etiqueta="IVA Tasa Reducida" 
+            OrientacionDelTextBox ="Right"
+        />-->
+        <TextBox
+            x:Name="txtNeto3"
+            Grid.Row="8"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding Neto3, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"         
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+        />
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoNeto3,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoNeto3,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoNeto3Visible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="9"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtNeto3"
+            Grid.Row="4" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding Neto3,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            Etiqueta="Neto 3" 
+            OrientacionDelTextBox ="Right"
+        />-->
+        <TextBox
+            x:Name="txtIvaTasaInc"
+            Grid.Row="10"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding IvaTasaIncrementada,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+        />
+        <!--<controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoIvaTasaIncrementada,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoTasaIvaIncrementada,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoIvaTasaIncrementadaVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="11"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+        <controles:ItemFormulario
+            Etiqueta="Concepto"
+            Valor="{Binding ConceptoIvaTasaIncrementada, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoIvaTasaIncrementadaVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="15"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"
+            IsEnabled="False"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtIvaTasaInc"
+            Grid.Row="5" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding IvaTasaIncrementada,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            Etiqueta="IVA Tasa Incrementada" 
+            OrientacionDelTextBox ="Right"
+        />-->
+        <TextBox
+            x:Name="txtExento"
+            Grid.Row="12"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding Exento,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+         />
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoExento,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoExento,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoExentoVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="13"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtExento"
+            Grid.Row="6" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding Exento,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            Etiqueta="Exento" 
+            OrientacionDelTextBox ="Right"
+        />-->
+        <TextBox
+            x:Name="txtPercepcionIVA"
+            Grid.Row="14"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding PercepcionIva, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+        />
+        <!--<controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoPercepcionIva,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoPercepcionIva,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoPercepcionIvaVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="15"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+        <controles:ItemFormulario
+            Etiqueta="Concepto"
+            Valor="{Binding ConceptoPercepcionIva, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoPercepcionIvaVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="15"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"
+            IsEnabled="False"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtPercepcionIVA"
+            Grid.Row="7" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding PercepcionIva,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            Etiqueta="Percepción IVA" 
+            OrientacionDelTextBox ="Right"
+        />-->
+        <TextBox
+            x:Name="txtPercepcionIIBB"
+            Grid.Row="16"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding PercepcionIibb, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+        />
+        <!--<controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoPercepcionIIBB,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoPercepcionIIBB,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoPercepcionIIBBVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="17"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+        <controles:ItemFormulario
+            Etiqueta="Concepto"
+            Valor="{Binding ConceptoPercepcionIIBB, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoPercepcionIIBBVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="17"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"
+            IsEnabled="False"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtPercepcionIIBB"
+            Grid.Row="8" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding PercepcionIibb,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            OrientacionDelTextBox ="Right"
+            Etiqueta="Percepción IIBB"
+        />-->
+        <TextBox
+            x:Name="txtImpuestoInterno"
+            Grid.Row="18"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding ImpuestoInterno,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+        />
+        <!--<controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoImpuestoInterno,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoImpuestoInterno,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoImpuestoInternoVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="19"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+        <controles:ItemFormulario
+            Etiqueta="Concepto"
+            Valor="{Binding ConceptoImpuestoInterno, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoImpuestoInternoVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="19"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"
+            IsEnabled="False"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtImpuestoInterno"
+            Grid.Row="9" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding ImpuestoInterno,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            OrientacionDelTextBox ="Right"
+            Etiqueta="Impuesto Interno"
+        />-->
+        <TextBox
+            x:Name="txtFinal"
+            Grid.Row="20"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            Text="{Binding Final, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            TextAlignment="Right" LostKeyboardFocus="txt_LostKeyboardFocus" KeyDown="txt_KeyDown"
+        />
+        <!--<controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto"
+            Entidad="{Binding ConceptoFinal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoFinal,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoFinalVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="21"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+        <controles:ItemFormulario
+            Etiqueta="Concepto"
+            Valor="{Binding ConceptoFinal, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding ConceptoFinalVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            Grid.Row="21"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Left" VerticalAlignment="Center"
+            IsEnabled="False"/>
+        <!--<controles:ItemFormulario
+            x:Name="txtFinal"
+            Grid.Row="10" Grid.ColumnSpan="2" Width="250"
+            Valor="{Binding Final, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            FormatoDeString="DECIMAL"
+            CantidadDeDecimales="3"
+            FiltroEntrada="NumericoDecimal"
+            VerticalAlignment="Center"
+            OrientacionDelTextBox ="Right"
+            Etiqueta="Final" 
+        />-->
+    </Grid>
+</UserControl>

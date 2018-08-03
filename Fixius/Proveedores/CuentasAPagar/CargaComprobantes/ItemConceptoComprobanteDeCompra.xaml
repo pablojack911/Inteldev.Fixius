@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Proveedores.CuenasAPagar.CargaComprobantes.ItemConceptoComprobanteDeCompra"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:dto="clr-namespace:Inteldev.Fixius.Servicios.DTO.Proveedores;assembly=Inteldev.Fixius.Servicios.DTO"
+             Loaded="UserControl_Loaded">
+    <StackPanel Margin="10">
+        <controles:ItemFormularioComboBoxEnums Etiqueta="Tipo" 
+                                               x:Name="comboTipoConcepto"
+                                               Tipo="{x:Type dto:TipoConcepto}"
+                                               Seleccionado="{Binding Path=Objeto.Tipo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            
+        </controles:ItemFormularioComboBoxEnums>
+        <controles:ItemFormularioMiniBusca
+            Name="MiniBuscaConcepto"
+            Etiqueta="Concepto"
+            Presentador="{Binding PresentadorConcepto, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            ></controles:ItemFormularioMiniBusca>
+        <controles:ItemFormularioNumeroDecimal            
+            Etiqueta="Importe"
+            Valor="{Binding Importe, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N3}"
+            />
+        <controles:ItemFormularioComboBoxEnums
+            Etiqueta="Tipo IVA"
+            x:Name="comboTipoConceptoExtra"
+            Tipo="{x:Type dto:TipoConcepto}"
+            Visibility="{Binding Visible, UpdateSourceTrigger=PropertyChanged}"
+            Seleccionado="{Binding Path=Extra.Tipo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ></controles:ItemFormularioComboBoxEnums>
+        <controles:ItemFormularioMiniBusca
+            Etiqueta="Concepto IVA"
+            Name="MiniBuscaConceptoExtra"
+            Visibility="{Binding Visible, UpdateSourceTrigger=PropertyChanged}"
+            Presentador="{Binding PresentadorConceptoExtra, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            ></controles:ItemFormularioMiniBusca>
+        <controles:ItemFormularioNumeroDecimal            
+            Etiqueta="Importe IVA"
+            Visibility="{Binding Visible, UpdateSourceTrigger=PropertyChanged}"
+            Valor="{Binding ImporteExtra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N3}"
+            />
+    </StackPanel>
+</UserControl>

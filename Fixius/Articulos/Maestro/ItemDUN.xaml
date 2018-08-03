@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Articulos.Maestro.ItemDUN"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d">
+    <StackPanel Margin="10">
+        <controles:ItemFormulario x:Name="codBarr" Width="250" Etiqueta="Código De Barras" Valor="{Binding Path=Objeto.CodigoDeBarra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controles:ItemFormulario>
+        <controles:ItemFormulario Width="250" FiltroEntrada="NumericoEntero" ValorNumericoMaximo="5" Etiqueta="Unidades Por Pallet" Valor="{Binding Path=Objeto.UnidadesPorPallet, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <controles:ItemFormulario Width="250" FiltroEntrada="NumericoEntero" ValorNumericoMaximo="5" Etiqueta="Unidades Por Base" Valor="{Binding Path=Objeto.UnidadesPorBase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <controles:ItemFormulario Width="250" FiltroEntrada="NumericoEntero" ValorNumericoMaximo="5" Etiqueta="Unidades Por Altura" Valor="{Binding Path=Objeto.UnidadesPorAltura, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </StackPanel>
+</UserControl>

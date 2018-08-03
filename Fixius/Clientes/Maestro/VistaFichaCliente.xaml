@@ -1,0 +1,270 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Clientes.Maestro.VistaFichaCliente"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="780" BorderBrush="Black" BorderThickness="1">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="{StaticResource OutsideFontColor}"/>
+            <Setter Property="Margin" Value="0,0,5,0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>            
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Grid.Row="0" Source="S:\PREVENTA\LOGOS\LOGONUEVO.JPG" Stretch="Fill" ></Image>
+            <Label Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">SOLICITUD ALTA CLIENTE *</Label>
+        </Grid>
+        
+        <Grid Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalAlignment="Right" >Fecha</Label>
+            <Label Grid.Row="1" HorizontalAlignment="Right">Operador</Label>
+            <Label Grid.Row="2" HorizontalAlignment="Right">Cliente Nº</Label>
+            <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="{Binding Fecha}"/>                
+            </Border>
+            <Border Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="{Binding Operador}"/>
+            </Border>
+            <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="{Binding Codigo}"/>
+            </Border>
+     
+        </Grid>
+        
+        
+        <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right">Razon Social</Label>
+        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right">Nombre Fantasia</Label>
+        <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right">Apellido</Label>        
+        <Label Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right">Condicion IVA</Label>
+        <Label Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right">Tipo Documento</Label>
+        <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right">Ramo</Label>
+        <Label Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right">Calle</Label>
+        <Label Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right">Codigo Postal</Label>
+        <Label Grid.Column="0" Grid.Row="10" HorizontalAlignment="Right">Telefono</Label>
+        <Label Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right">E-mail</Label>
+        <Label Grid.Column="0" Grid.Row="12" HorizontalAlignment="Right">Codigo Reba</Label>
+        <Label Grid.Column="0" Grid.Row="13" HorizontalAlignment="Right">Condicion de Pago</Label>
+        <Label Grid.Column="0" Grid.Row="14" HorizontalAlignment="Right">Condicion IIBB</Label>
+        <Label Grid.Column="0" Grid.Row="15" HorizontalAlignment="Right" VerticalAlignment="Center">Tarjetas Asignadas</Label>
+        <Label Grid.Column="0" Grid.Row="16" HorizontalAlignment="Right">Observaciones</Label>
+        
+        <Border Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="1">
+            <TextBlock Text="{Binding RazonSocial}"/>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="1">
+            <TextBlock Text="{Binding NombreFantasia}"/>
+        </Border>    
+        <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="1">
+            <TextBlock Text="{Binding NombreFantasia}"/>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" BorderBrush="Black" BorderThickness="1">
+            <TextBlock Text="{Binding Apellido}"/>
+        </Border>
+        <Label Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1" HorizontalAlignment="Right">Nombre</Label>
+        <Border Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1" BorderBrush="Black" BorderThickness="1">
+            <TextBlock Text="{Binding Nombre}"/>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="1" BorderBrush="Black" BorderThickness="1">
+            <TextBlock Text="{Binding CondicionDeIva}"/>
+        </Border>
+        <Label Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="1" HorizontalAlignment="Right">CUIT</Label>
+
+        <Border Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Cuit}"/>
+        </Border>
+        <Grid Grid.Column="1" Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*"></ColumnDefinition>
+                <ColumnDefinition Width="30*"></ColumnDefinition>
+                <ColumnDefinition Width="60*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="{Binding TipoDocumento}" Width="60"/>
+            </Border>
+            <Label Grid.Column="1" HorizontalAlignment="Right">Documento</Label>
+            <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="{Binding Documento}" />
+            </Border>
+
+        </Grid>
+        <Border Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Ramo}"/>
+        </Border>
+        <Label Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="1" HorizontalAlignment="Right">Otro</Label>
+        <Border Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Otro}"/>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Calle}"/>
+        </Border>
+        <Label Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="1" HorizontalAlignment="Right">Num|Piso|Dpto.</Label>
+        <Border Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding NumeroPisoDepto}"/>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding CodigoPostal}"/>
+        </Border>
+        <Label Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="1" HorizontalAlignment="Right">Localidad</Label>
+        <Border Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Localidad}"/>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Telefono}"/>
+        </Border>
+        <Label Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="1" HorizontalAlignment="Right">Celular</Label>
+        <Border Grid.Column="3" Grid.Row="10" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Celular}"/>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="3"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Email}"/>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Reba}"/>
+        </Border>
+        <Label Grid.Column="2" Grid.Row="12" Grid.ColumnSpan="1" HorizontalAlignment="Right">Vencimiento</Label>
+        <Border Grid.Column="3" Grid.Row="12" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding VenceReba}"/>
+        </Border>
+        
+        <Grid Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0"  BorderThickness="1" BorderBrush="Black" >
+                <TextBlock Text="{Binding CondicionDePago}"/>
+            </Border>
+            <Label Grid.Column="1" HorizontalAlignment="Right">Modalidad de Pago</Label>
+            <Border Grid.Column="2"  BorderThickness="1" BorderBrush="Black" >
+                <TextBlock Text="{Binding ModoDePago}"/>
+            </Border>
+            <Label Grid.Column="3" HorizontalAlignment="Right">Limite</Label>
+            <Border Grid.Column="4"  BorderThickness="1" BorderBrush="Black" >
+                <TextBlock Text="{Binding LimiteDeCredito}"/>
+            </Border>
+        </Grid>
+
+        <Border Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="1"  BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding CondicionIIBB}"/>
+        </Border>
+        
+        <Grid Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Grid.Row="0" BorderThickness="1" BorderBrush="Black" >
+                <Label HorizontalAlignment="Center">Tarjeta Nº</Label>
+            </Border>
+            <Border Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="Black" >
+                <TextBlock Text="{Binding Tarjeta1}"/>
+            </Border>
+            <Border Grid.Column="0" Grid.Row="2" BorderThickness="1" BorderBrush="Black" >
+                <TextBlock Text="{Binding Tarjeta2}"/>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="0" BorderThickness="1" BorderBrush="Black" >
+                <Label HorizontalAlignment="Center">Apellido y Nombre | Tipo y Nº de Documento</Label>
+            </Border>
+            <Border Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="Black" >
+                <TextBlock Text="{Binding Titular1}"/>
+            </Border>
+            <Border Grid.Column="1" Grid.Row="2" BorderThickness="1" BorderBrush="Black" >
+                <TextBlock Text="{Binding Titular2}"/>
+            </Border>
+
+        </Grid>
+        <Border Grid.Column="1" Grid.Row="16" Grid.RowSpan="2" BorderThickness="1" BorderBrush="Black" >
+            <TextBlock Text="{Binding Observacion}"/>
+        </Border>
+        <Label Grid.Column="2" Grid.Row="16" HorizontalAlignment="Right">Firma</Label>
+        <Border Grid.Column="4" Grid.Row="16" Grid.RowSpan="1" BorderThickness="1" BorderBrush="Black" >
+        </Border>
+        <Label Grid.Column="2" Grid.Row="17" HorizontalAlignment="Right">Aclaracion</Label>
+        <Label Grid.Column="3" Grid.Row="17">___________________________________________________________________________________________________________________</Label>
+        <TextBlock Grid.Column="0" Grid.Row="18" Grid.ColumnSpan="5" FontSize="10">
+            * La informacion racabada se encuentra protegida bajo las Politicas de Privacidad de Datos de Hergo. Disponibles en Atencion Al Cliente, o en www.hergo.com.ar
+        </TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="19" Grid.ColumnSpan="5" FontSize="10">
+            **Declaro Conocer que CONSUMIDOR FINAL, es aquella persona fisica que destina los articulo que adquiere para su uso o consumo privado
+        </TextBlock>
+    </Grid>
+    
+    
+</UserControl>

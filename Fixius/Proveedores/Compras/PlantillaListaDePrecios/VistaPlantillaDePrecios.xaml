@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Proveedores.Compras.PlantillaListaDePrecios.VistaPlantillaDePrecios"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:presentadores="clr-namespace:Inteldev.Core.Presentacion.Presentadores;assembly=Inteldev.Core.Presentacion"
+             xmlns:local="clr-namespace:Inteldev.Fixius.Proveedores.Compras.PlantillaListaDePrecios"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Loaded="UserControl_Loaded">
+    
+    <StackPanel Margin="10">
+        <controles:ItemFormulario Width="250" x:Name="txtItemCodigo" Etiqueta="Código" Valor="{Binding Path=Modelo.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Habilitado="{Binding CodigoHabilitado}"/>
+        <controles:ItemFormulario Etiqueta="Nombre" Valor="{Binding Path=Modelo.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controles:ItemFormulario>
+        
+        <controles:ItemFormularioMiniBuscaLista
+            Etiqueta="Proveedores"
+            Presentador="{Binding PresentadorProveedores, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        />
+        <local:CreaPlantilla x:Name="creaPlantilla" Controlador="{Binding ControladorPlantilla}"/>
+    </StackPanel>
+</UserControl>

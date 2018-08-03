@@ -1,0 +1,40 @@
+﻿<Grid x:Class="Inteldev.Fixius.Articulos.BusquedaArticulo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             mc:Ignorable="d"
+      Loaded="Grid_Loaded">
+    <StackPanel>
+        <controles:ItemFormularioComboBox 
+                    Name="comboAreas"
+                    ItemsDetalle="{Binding Area, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                    Seleccionado="{Binding AreaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"                        
+                    Etiqueta="Área"
+
+                        />
+        <controles:ItemFormularioComboBox 
+                    Name="comboSector"
+                    ItemsDetalle="{Binding Sector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                    Seleccionado="{Binding SectorSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                    Etiqueta="Sector">
+           
+        </controles:ItemFormularioComboBox>
+        <controles:ItemFormularioComboBox 
+                    Name="comboSubSector"
+                    ItemsDetalle="{Binding SubSector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                    Seleccionado="{Binding SubSectorSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                    Etiqueta="SubSector"/>
+        <controles:ItemFormularioComboBox
+                    Name="comboFamilia"
+                    ItemsDetalle="{Binding Familia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                    Seleccionado="{Binding FamiliaSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                    Etiqueta="Familia"/>
+        <controles:ItemFormularioComboBox 
+                    Name="comboSubFamilia"
+                    ItemsDetalle="{Binding SubFamilia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                    Seleccionado="{Binding SubFamiliaSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                    Etiqueta="SubFamilia"/>
+    </StackPanel>
+</Grid>

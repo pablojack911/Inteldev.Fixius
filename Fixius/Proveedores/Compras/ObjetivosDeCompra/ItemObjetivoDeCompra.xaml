@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Inteldev.Fixius.Proveedores.Compras.ObjetivosDeCompra.ItemObjetivoDeCompra"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controles="clr-namespace:Inteldev.Core.Presentacion.Controles;assembly=Inteldev.Core.Presentacion"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:dto="clr-namespace:Inteldev.Fixius.Servicios.DTO.Proveedores;assembly=Inteldev.Fixius.Servicios.DTO"
+             xmlns:l="clr-namespace:Inteldev.Fixius.Articulos"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="aplicableEnum"
+                    MethodName="GetValues" 
+                    ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="dto:aplicableEnum" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Margin="10">
+            <controles:ItemFormularioFecha
+                x:Name="PrimerCampo"
+                Margin="0,0,0,5"
+                Etiqueta="Fecha Desde"
+                Fecha="{Binding Path=Objeto.Desde, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ></controles:ItemFormularioFecha>
+            <controles:ItemFormularioFecha
+                Margin="0,0,0,5"
+                Etiqueta="Fecha Hasta"
+                Fecha="{Binding Path=Objeto.Hasta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ></controles:ItemFormularioFecha>
+            <!--<l:BusquedaArticulo
+                x:Name="comboesArea"
+                HorizontalAlignment="Left"
+                        AreaSeleccionada="{Binding Path=Objeto.Area, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SectorSeleccionado="{Binding Path=Objeto.Sector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SubSectorSeleccionado="{Binding Path=Objeto.Subsector,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        FamiliaSeleccionado="{Binding Path=Objeto.Familia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SubFamiliaSeleccionado="{Binding Path=Objeto.Subfamilia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="153"
+                />-->
+            <controles:ItemFormularioMiniBusca
+                Name="miniBuscaArticulo"
+                Etiqueta="Artículo"
+                ></controles:ItemFormularioMiniBusca>
+            <controles:ItemFormulario
+                Etiqueta="Cantidad De Bultos"
+                Valor="{Binding Path=Objeto.Bultos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ></controles:ItemFormulario>
+            <controles:ItemFormulario
+                Etiqueta="Descuento (%)"
+                Valor="{Binding Path=Objeto.Descuento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ></controles:ItemFormulario>
+            <controles:ItemFormularioComboBoxEnums
+                Etiqueta="Aplicable a"
+                ItemsDetalle="{Binding Source={StaticResource ResourceKey=aplicableEnum}}"
+                Seleccionado="{Binding Path=Objeto.Aplicable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ></controles:ItemFormularioComboBoxEnums>
+        </StackPanel>
+    </Grid>
+</UserControl>
